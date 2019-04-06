@@ -18,7 +18,7 @@ public class SkyAuthenticationFailureHandler implements AuthenticationFailureHan
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         Map<String,Object> param = new HashMap<>();
         param.put("success",false);
-        param.put("msg","用户名或密码不正确");
+        param.put("msg",exception.getMessage());
         response.setContentType("text/json;charset=UTF-8");
         response.getWriter().write(om.writeValueAsString(param));
     }

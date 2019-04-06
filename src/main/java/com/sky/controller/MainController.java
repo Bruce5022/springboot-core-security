@@ -15,4 +15,9 @@ public class MainController {
     public String error() {
         return "error";
     }
+
+    @RequestMapping("/imageCode")
+    public String imageCode() {
+        return "imageCode";
+    }
 }

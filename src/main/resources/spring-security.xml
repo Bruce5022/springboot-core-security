@@ -18,9 +18,14 @@
         <security:intercept-url pattern="/skylogin" access="permitAll()"/>
         <security:intercept-url pattern="/product/index" access="permitAll()"/>
         <security:intercept-url pattern="/js/**" access="permitAll()"/>
+        <security:intercept-url pattern="/imageCode" access="permitAll()"/>
         <security:intercept-url pattern="/favicon.ico" access="permitAll()"/>
         <!--拦截所有资源-->
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
+
+        <!--自定义过滤器-->
+        <security:custom-filter ref="imageCodeAuthenticationFilter" before="FORM_LOGIN_FILTER"/>
+
         <!--<security:form-login login-page="/skylogin" login-processing-url="/userlogin" authentication-failure-url="/skylogin?error=true" authentication-success-forward-url="/product/index"/>-->
         <security:form-login login-page="/skylogin"
                              login-processing-url="/userlogin"
@@ -46,5 +51,8 @@
     <bean id="skyAuthenticationSuccessHandler" class="com.sky.handler.SkyAuthenticationSuccessHandler"/>
     <bean id="skyAuthenticationFailureHandler" class="com.sky.handler.SkyAuthenticationFailureHandler"/>
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <bean id="imageCodeAuthenticationFilter" class="com.sky.filter.ImageCodeAuthenticationFilter">
+        <property name="failureHandler" ref="skyAuthenticationFailureHandler"/>
+    </bean>
 
 </beans>
