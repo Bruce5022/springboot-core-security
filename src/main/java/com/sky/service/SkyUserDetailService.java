@@ -12,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,9 @@ public class SkyUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 查询用户
         User user = userMapper.findByUsername(username);
+        if (ObjectUtils.isEmpty(user)) {
+            return user;
+        }
         // 查询用户权限
         List<Permission> permissions = userMapper.findPermissionByUsername(username);
         List<GrantedAuthority> authoritys = new ArrayList<GrantedAuthority>();
@@ -36,7 +40,7 @@ public class SkyUserDetailService implements UserDetailsService {
         }
         user.setAuthorities(authoritys);
         try {
-            logger.info("用户:"+new ObjectMapper().writeValueAsString(user));
+            logger.info("用户:" + new ObjectMapper().writeValueAsString(user));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
