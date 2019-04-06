@@ -3,16 +3,30 @@
 <html>
 <head>
     <title>登陆页面</title>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 </head>
 <body>
 <h1 style="color: blueviolet">登陆页面</h1>
 <c:if test="${not empty param.error}">
     <font color="#8b0000">用户名或密码错误!</font>
 </c:if>
-<form action="${pageContext.request.contextPath}/userlogin" method="post">
+<form id="loginForm" method="post">
     用户名:<input type="text" name="username"/><br/>
     姓名:<input type="password" name="password"/>
-    <input type="submit" value="登陆"/>
+    <input type="button" id="loginBtn" value="登陆"/>
 </form>
 </body>
+<script type="text/javascript">
+    $(function(){
+        $("#loginBtn").click(function(){
+            $.post("${pageContext.request.contextPath}/userlogin",$("#loginForm").serialize(),function (data) {
+                if(data.success){
+                    window.location.href="${pageContext.request.contextPath}/product/index";
+                }else{
+                    alert("登录失败："+data.msg);
+                }
+            },"json");
+        }) ;
+    });
+</script>
 </html>

@@ -13,6 +13,10 @@
 
     <!-- 扫描Controller类-->
     <contenxt:component-scan base-package="com.sky"/>
+
+    <!--处理静态资源 -->
+    <mvc:default-servlet-handler/>
+
     <!--注解方式处理器映射器和处理器适配器 -->
     <mvc:annotation-driven></mvc:annotation-driven>
 
