@@ -28,4 +28,23 @@ public class Permission {
     public void setPermTag(String permTag) {
         this.permTag = permTag;
     }
+
+    public Permission(Integer id, String permName, String permTag) {
+        this.id = id;
+        this.permName = permName;
+        this.permTag = permTag;
+    }
+
+    public Permission() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "Permission{" +
+                "id=" + id +
+                ", permName='" + permName + '\'' +
+                ", permTag='" + permTag + '\'' +
+                '}';
+    }
 }
