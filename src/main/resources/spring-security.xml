@@ -19,18 +19,20 @@
         <security:intercept-url pattern="/product/index" access="permitAll()"/>
         <!--拦截所有资源-->
         <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
-        <security:form-login login-page="/skylogin" login-processing-url="/userlogin"/>
+        <security:form-login login-page="/skylogin" login-processing-url="/userlogin" authentication-failure-url="/skylogin?error=true" authentication-success-forward-url="/product/index"/>
         <security:access-denied-handler error-page="/403"/>
         <security:csrf disabled="true"/>
     </security:http>
 
     <security:authentication-manager>
-        <security:authentication-provider>
-            <security:user-service>
+        <security:authentication-provider user-service-ref="skyUserDetailService">
+            <!--<security:user-service>
                 <security:user name="bruce" password="123456" authorities="ROLE_USER"/>
                 <security:user name="jack" password="123456" authorities="ROLE_ADMIN"/>
-            </security:user-service>
+            </security:user-service>-->
         </security:authentication-provider>
     </security:authentication-manager>
+
+    <bean id="skyUserDetailService" class="com.sky.service.SkyUserDetailService"/>
 
 </beans>
