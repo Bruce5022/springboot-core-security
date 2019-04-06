@@ -8,6 +8,12 @@
             http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
     <security:http>
+        <!--访问权限过滤-->
+        <security:intercept-url pattern="/product/list" access="hasAnyAuthority('PER_LIST_PRODUCT')"/>
+        <security:intercept-url pattern="/product/update" access="hasAnyAuthority('PER_UPDATE_PRODUCT')"/>
+        <security:intercept-url pattern="/product/delete" access="hasAnyAuthority('PER_DELETE_PRODUCT')"/>
+        <security:intercept-url pattern="/product/add" access="hasAnyAuthority('PER_ADD_PRODUCT')"/>
+
         <!--首页都能访问-->
         <security:intercept-url pattern="/skylogin" access="permitAll()"/>
         <security:intercept-url pattern="/product/index" access="permitAll()"/>
