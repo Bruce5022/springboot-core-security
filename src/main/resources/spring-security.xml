@@ -34,6 +34,7 @@
 
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="skyUserDetailService">
+            <security:password-encoder ref="passwordEncoder"/>
             <!--<security:user-service>
                 <security:user name="bruce" password="123456" authorities="ROLE_USER"/>
                 <security:user name="jack" password="123456" authorities="ROLE_ADMIN"/>
@@ -44,5 +45,6 @@
     <bean id="skyUserDetailService" class="com.sky.service.SkyUserDetailService"/>
     <bean id="skyAuthenticationSuccessHandler" class="com.sky.handler.SkyAuthenticationSuccessHandler"/>
     <bean id="skyAuthenticationFailureHandler" class="com.sky.handler.SkyAuthenticationFailureHandler"/>
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 </beans>

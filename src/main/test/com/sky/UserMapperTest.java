@@ -7,6 +7,8 @@ import com.sky.mapper.UserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -31,5 +33,15 @@ public class UserMapperTest {
         List<Permission> permissions = userMapper.findPermissionByUsername("shizhanwei");
         permissions.stream().forEach(System.out::println);
 
+    }
+
+    @Test
+    public void testUpdatePassword(){
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        User user = new User();
+        user.setUsername("bruce");
+        String pwd = encoder.encode("123456");
+        user.setPassword(pwd);
+        userMapper.updatePassword(user);
     }
 }
