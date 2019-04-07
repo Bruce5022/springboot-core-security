@@ -5,7 +5,7 @@
     <title>首页</title>
 </head>
 <body>
-欢迎用户，${username}<br/>
+欢迎用户:${username}，<a href="/skylogout">注销</a><br/>
 以下是网站的功能：<br/>
 <security:authorize access="hasAuthority('PER_ADD_PRODUCT')">
 <a href="${pageContext.request.contextPath}/product/add">商品添加</a><br/>

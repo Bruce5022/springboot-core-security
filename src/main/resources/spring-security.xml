@@ -36,6 +36,7 @@
         <security:access-denied-handler error-page="/403"/>
         <security:csrf disabled="true"/>
 
+        <security:logout delete-cookies="remember-me" invalidate-session="true" logout-url="/skylogout" logout-success-url="/skylogin"/>
         <security:remember-me token-repository-ref="jdbcTokenRepository" token-validity-seconds="300"/>
     </security:http>
 

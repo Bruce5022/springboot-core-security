@@ -11,8 +11,8 @@
     <font color="#8b0000">用户名或密码错误!</font>
 </c:if>
 <form id="loginForm" method="post">
-    用户名:<input type="text" name="username"/><br/>
-    姓名:<input type="password" name="password"/><br/>
+    账号:<input type="text" name="username"/><br/>
+    密码:<input type="password" name="password"/><br/>
     验证码:<input type="text" name="imageCode"/><img src="${pageContext.request.contextPath}/imageCode"><br/>
     记住我:<input type="checkbox" name="remember-me" value="true"><br/>
     <input type="button" id="loginBtn" value="登陆"/>
